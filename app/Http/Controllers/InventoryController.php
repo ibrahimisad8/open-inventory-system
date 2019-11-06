@@ -14,7 +14,11 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        //
+        $inventories = Inventory::paginate(5);
+
+        // $data['inventories'] 
+
+        return view('inventory.view')->with(compact('inventories'));
     }
 
     /**
@@ -24,7 +28,7 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('inventory.create');
     }
 
     /**
@@ -35,7 +39,15 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $save = new Inventory($data);
+
+        if (!$save->save()) 
+        {
+            return back()->withErrors($save->getErrors())->withInput();
+        }
+
+        return redirect(route('inventory.index'))->with(['status' => "Inventory successfully added"]);
     }
 
     /**
