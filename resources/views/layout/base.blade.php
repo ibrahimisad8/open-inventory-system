@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title> Smartmikey Laravel</title>
+        <title>Laravel | @yield('sub-title')</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -49,6 +48,12 @@
                 font-size: 84px;
             }
 
+            .small-title
+            {
+                font-size: 25px;
+                text-transform : uppercase; 
+            }
+
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -62,11 +67,44 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            input,textarea,button
+            {
+                width : 100%;
+                padding : 9px;
+                border : 1px solid #DDD;
+                border-radius : 5px; 
+            }
+
+            button
+            {
+                width : 50%; 
+                background : #CCC;
+                font-size  : 15px;
+            }
+
+            .sub-content
+            {
+                width:25%;
+                margin:0px auto;
+                text-align:justify
+            }
+
+            .items
+            {
+                border  : 1px dashed #BBB;
+                padding : 9px;
+                font-size : 12px;
+                text-transform:uppercase;  
+                border-radius : 7px;
+                margin-bottom : 5px; 
+                text-align : left; 
+            }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            @if(Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -80,22 +118,7 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-</div>
-        @include('layout.nav')
-    </div>
-@endsection
+            @yield('content')
+        </div>
+    </body>
+</html>
